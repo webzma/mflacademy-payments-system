@@ -30,15 +30,6 @@ export default function ManageUsers() {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [newUser, setNewUser] = useState<Partial<User>>({
-    name: "",
-    email: "",
-    role: "representative",
-    status: "active",
-  });
 
   useEffect(() => {
     // Simular la carga de usuarios desde el servidor
@@ -113,29 +104,6 @@ export default function ManageUsers() {
     setFilteredUsers(result);
   };
 
-  const handleAddUser = () => {
-    // En una aplicación real, aquí se haría una llamada a la API para agregar el usuario
-    const id = (users.length + 1).toString();
-    const newUserWithId = { ...newUser, id } as User;
-    setUsers([...users, newUserWithId]);
-    setFilteredUsers([...filteredUsers, newUserWithId]);
-    setIsAddModalOpen(false);
-    setNewUser({
-      name: "",
-      email: "",
-      role: "representative",
-      status: "active",
-    });
-  };
-
-  const handleToggleUserStatus = (user: User) => {
-    // En una aplicación real, aquí se haría una llamada a la API para cambiar el estado del usuario
-    const newStatus = user.status === "active" ? "inactive" : "active";
-    const updatedUsers = users.map((u) =>
-      u.id === user.id ? { ...u, status: newStatus } : u
-    );
-  };
-
   const columns = [
     {
       key: "name",
@@ -168,18 +136,10 @@ export default function ManageUsers() {
       header: "Acciones",
       cell: (user: User) => (
         <div className="space-x-2">
-          <Button
-            onClick={() => {
-              setCurrentUser(user);
-              setIsEditModalOpen(true);
-            }}
-            variant="outline"
-            size="sm"
-          >
+          <Button variant="outline" size="sm">
             Editar
           </Button>
           <Button
-            onClick={() => handleToggleUserStatus(user)}
             variant="outline"
             size="sm"
             className={
@@ -243,9 +203,7 @@ export default function ManageUsers() {
           </div>
           <div className="flex justify-between">
             <Button onClick={handleSearch}>Buscar</Button>
-            <Button onClick={() => setIsAddModalOpen(true)}>
-              Agregar Usuario
-            </Button>
+            <Button>Agregar Usuario</Button>
           </div>
         </div>
         <DataTable columns={columns} data={filteredUsers} />

@@ -5,7 +5,7 @@ import {
   SidebarTrigger,
   SidebarInset,
 } from "@/components/ui/sidebar";
-import { ModeToggle } from "@/components/theme/toggle-button";
+import ThemeSwitcher from "@/components/theme/theme-switcher";
 import { Notifications } from "@/components/ui/notification";
 
 export default function RepresentativeLayout({
@@ -24,7 +24,7 @@ export default function RepresentativeLayout({
               Panel de Representante
             </h1>
             <div className="flex items-center gap-4">
-              <ModeToggle />
+              <ThemeSwitcher />
               <Notifications />
               <div className="w-10 h-10 bg-primary rounded-full"></div>
             </div>

@@ -9,8 +9,6 @@ import {
   Users,
   Settings,
   LogOut,
-  BarChart,
-  UserCircle,
 } from "lucide-react";
 
 import {

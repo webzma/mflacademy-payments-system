@@ -1,11 +1,6 @@
-import { supabase } from "../utils/supabase/client";
 import Link from "next/link";
 
 export default async function Home() {
-  let { data } = await supabase.from("countries").select();
-
-  console.log(data);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-4xl font-bold mb-8">
