@@ -1,54 +1,18 @@
 "use client";
-
 import type React from "react";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { login } from "./actions";
 
 type UserType = "representative" | "admin";
 
 export default function Login() {
   const [userType, setUserType] = useState<UserType>("representative");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    if (!userType) {
-      setError("Por favor, seleccione un tipo de usuario");
-      return;
-    }
-
-    try {
-      if (
-        userType === "representative" &&
-        email === "representante@example.com" &&
-        password === "password"
-      ) {
-        router.push("/dashboard/representative");
-      } else if (
-        userType === "admin" &&
-        email === "admin@example.com" &&
-        password === "password"
-      ) {
-        router.push("/dashboard/admin");
-      } else {
-        setError("Credenciales inválidas");
-      }
-    } catch (err) {
-      setError("Ocurrió un error durante el inicio de sesión");
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white flex">
-      {/* Lado izquierdo - Imagen */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <Image
           src="/mflacademy-login-image.jpg"
@@ -65,7 +29,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Lado derecho - Formulario */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-gray-50 to-white">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -80,24 +43,16 @@ export default function Login() {
             </p>
           </div>
 
-          {error && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-red-500 mb-4 text-center bg-red-50 p-2 rounded-lg"
-            >
-              {error}
-            </motion.p>
-          )}
-
           <div className="mb-6">
             <label className="block text-black text-sm font-semibold mb-2">
               Tipo de usuario
             </label>
             <div className="flex justify-center space-x-4">
               <motion.button
+                name="userType"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                value={userType}
                 onClick={() => setUserType("representative")}
                 className={`px-4 py-2 rounded-full transition-colors duration-300 ${
                   userType === "representative"
@@ -108,6 +63,7 @@ export default function Login() {
                 Representante
               </motion.button>
               <motion.button
+                value={userType}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setUserType("admin")}
@@ -122,7 +78,7 @@ export default function Login() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form className="space-y-4">
             <div>
               <label
                 htmlFor="email"
@@ -134,8 +90,7 @@ export default function Login() {
                 type="email"
                 id="email"
                 placeholder="Correo electrónico"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
                           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                           transition-colors duration-300 placeholder:text-gray-400"
@@ -152,9 +107,8 @@ export default function Login() {
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
                           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                           transition-colors duration-300 placeholder:text-gray-400"
@@ -162,6 +116,7 @@ export default function Login() {
               />
             </div>
             <motion.button
+              formAction={login}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
@@ -172,12 +127,6 @@ export default function Login() {
               Iniciar Sesión
             </motion.button>
           </form>
-
-          <div className="mt-6 text-center">
-            <a href="#" className="text-gray-600 hover:text-gray-800 text-sm">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
         </motion.div>
       </div>
     </div>

@@ -1,13 +1,17 @@
 import type React from "react";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
 
 export const metadata = {
-  title: "Gestor de Pagos - Academia de Inglés",
+  title: "Gestor de Pagos - Academia de Inglés MFLAcademy",
   description:
-    "Sistema de gestión de pagos para representantes y atención al cliente",
+    "Sistema de gestión de pagos para representantes y atención al cliente de MFLAcademy",
 };
 
 export default function RootLayout({
@@ -17,7 +21,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={poppins.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

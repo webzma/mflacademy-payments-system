@@ -5,19 +5,38 @@ import {
   SidebarTrigger,
   SidebarInset,
 } from "@/components/ui/sidebar";
+import { ModeToggle } from "@/components/theme/toggle-button";
+import { Notifications } from "@/components/ui/notification";
+import Image from "next/image";
 
-export default function AdminLayout({
+export default function RepresentativeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen flex-1">
+      <div className="flex h-screen bg-background w-full">
         <AppSidebar userType="admin" />
         <SidebarInset className="flex-1 overflow-auto">
-          <header className="bg-white border-b border-gray-200 p-4">
-            <SidebarTrigger />
+          <header className="bg-card border-b border-border p-4 flex items-center justify-between">
+            <SidebarTrigger className="lg:hidden" />
+            <h1 className="text-xl font-semibold text-foreground">
+              Panel de Representante
+            </h1>
+            <div className="flex items-center space-x-4">
+              <ModeToggle />
+              <Notifications />
+              <div className="w-10 h-10 border-none rounded-full">
+                <Image
+                  src="/avatar.webp"
+                  alt="Avatar image"
+                  width={100}
+                  height={100}
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
+            </div>
           </header>
           <main className="p-6">{children}</main>
         </SidebarInset>

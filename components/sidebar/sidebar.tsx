@@ -1,9 +1,17 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, DollarSign, Users, Settings, LogOut } from "lucide-react";
+import {
+  Home,
+  DollarSign,
+  FileText,
+  Users,
+  Settings,
+  LogOut,
+  BarChart,
+  UserCircle,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -30,6 +38,11 @@ export function AppSidebar({ userType }: SidebarProps) {
         label: "Reportar Pago",
         href: "/dashboard/representative/report-payment",
       },
+      {
+        icon: FileText,
+        label: "Mis Comprobantes",
+        href: "/dashboard/representative/my-receipts",
+      },
     ],
     admin: [
       { icon: Home, label: "Inicio", href: "/dashboard/admin" },
@@ -45,11 +58,11 @@ export function AppSidebar({ userType }: SidebarProps) {
   const items = menuItems[userType];
 
   return (
-    <Sidebar>
+    <Sidebar className="bg-sidebar border-r border-border">
       <SidebarHeader>
-        <div className="p-4">
-          <h2 className="text-2xl font-bold text-black">MFL Academy</h2>
-          <p className="text-sm text-gray-600">Sistema de Pagos</p>
+        <div className="p-6">
+          <h2 className="text-2xl font-bold text-primary">MFL Academy</h2>
+          <p className="text-sm text-muted-foreground">Sistema de Pagos</p>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -59,17 +72,17 @@ export function AppSidebar({ userType }: SidebarProps) {
               <SidebarMenuButton asChild>
                 <Link
                   href={item.href}
-                  className={`transition pl-5 flex items-center space-x-2 ${
+                  className={`flex items-center space-x-3 px-6 py-3 text-md font-medium transition-colors rounded-lg ${
                     pathname === item.href
-                      ? "text-blue-600"
-                      : "text-gray-600 hover:text-blue-600"
+                      ? "text-blue-600 bg-gray-100 hover:text-blue-700"
+                      : "text-muted-foreground hover:text-blue-500 hover:bg-gray-100"
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.label}</span>
                   {pathname === item.href && (
                     <motion.div
-                      className="absolute left-0 w-1 h-8 bg-blue-600 rounded-r-full"
+                      className="absolute left-0 w-1 h-8 bg-blue-500 rounded-r-full"
                       layoutId="sidebar-indicator"
                     />
                   )}
@@ -85,7 +98,7 @@ export function AppSidebar({ userType }: SidebarProps) {
             <SidebarMenuButton asChild>
               <Link
                 href="/settings"
-                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600"
+                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded-lg"
               >
                 <Settings className="h-5 w-5" />
                 <span>Configuración</span>
@@ -96,7 +109,7 @@ export function AppSidebar({ userType }: SidebarProps) {
             <SidebarMenuButton asChild>
               <Link
                 href="/logout"
-                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600"
+                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded-lg"
               >
                 <LogOut className="h-5 w-5" />
                 <span>Cerrar Sesión</span>

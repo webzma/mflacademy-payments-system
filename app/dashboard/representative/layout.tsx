@@ -5,6 +5,8 @@ import {
   SidebarTrigger,
   SidebarInset,
 } from "@/components/ui/sidebar";
+import { ModeToggle } from "@/components/theme/toggle-button";
+import { Notifications } from "@/components/ui/notification";
 
 export default function RepresentativeLayout({
   children,
@@ -13,11 +15,19 @@ export default function RepresentativeLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen">
+      <div className="flex h-screen bg-gray-50 flex-1">
         <AppSidebar userType="representative" />
         <SidebarInset className="flex-1 overflow-auto">
-          <header className="bg-white border-b border-gray-200 p-4">
-            <SidebarTrigger />
+          <header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+            <SidebarTrigger className="lg:hidden" />
+            <h1 className="text-xl font-semibold text-gray-800">
+              Panel de Representante
+            </h1>
+            <div className="flex items-center gap-4">
+              <ModeToggle />
+              <Notifications />
+              <div className="w-10 h-10 bg-primary rounded-full"></div>
+            </div>
           </header>
           <main className="p-6">{children}</main>
         </SidebarInset>
