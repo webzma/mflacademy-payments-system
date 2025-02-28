@@ -4,7 +4,7 @@ import type React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { login } from "./actions";
+import { loginLikeAdmin, loginLikeRepresentative } from "./actions";
 
 type UserType = "representative" | "admin";
 
@@ -78,55 +78,109 @@ export default function Login() {
             </div>
           </div>
 
-          <form className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-black text-sm font-semibold mb-2"
+          {userType === "representative" && (
+            <form className="space-y-4">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-black text-sm font-semibold mb-2"
+                >
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Correo electrónico"
+                  name="email"
+                  className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
+                            focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+                            transition-colors duration-300 placeholder:text-gray-400"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-black text-sm font-semibold mb-2"
+                >
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
+                            focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+                            transition-colors duration-300 placeholder:text-gray-400"
+                  required
+                />
+              </div>
+              <motion.button
+                formAction={loginLikeRepresentative}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
+                          transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
+                          focus:ring-opacity-50 mt-6 shadow-md"
               >
-                Correo electrónico
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Correo electrónico"
-                name="email"
-                className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
+                Iniciar Sesión
+              </motion.button>
+            </form>
+          )}
+
+          {userType === "admin" && (
+            <form className="space-y-4">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-black text-sm font-semibold mb-2"
+                >
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Correo electrónico"
+                  name="email"
+                  className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
                           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                           transition-colors duration-300 placeholder:text-gray-400"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-black text-sm font-semibold mb-2"
-              >
-                Contraseña
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Contraseña"
-                className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-black text-sm font-semibold mb-2"
+                >
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  className="w-full px-3 py-2 bg-gray-50 text-gray-800 border border-gray-300 rounded-lg
                           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                           transition-colors duration-300 placeholder:text-gray-400"
-                required
-              />
-            </div>
-            <motion.button
-              formAction={login}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
+                  required
+                />
+              </div>
+              <motion.button
+                formAction={loginLikeAdmin}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
                         transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
                         focus:ring-opacity-50 mt-6 shadow-md"
-            >
-              Iniciar Sesión
-            </motion.button>
-          </form>
+              >
+                Iniciar Sesión
+              </motion.button>
+            </form>
+          )}
         </motion.div>
       </div>
     </div>
