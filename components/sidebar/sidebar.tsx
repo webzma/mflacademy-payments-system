@@ -10,7 +10,6 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -20,6 +19,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { logout } from "@/app/(auth)/login/actions";
 
 type SidebarProps = {
   userType: "representative" | "admin";
@@ -105,13 +105,13 @@ export function AppSidebar({ userType }: SidebarProps) {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link
-                href="/logout"
+              <button
+                onClick={logout}
                 className="flex items-center space-x-3 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded-lg"
               >
                 <LogOut className="h-5 w-5" />
                 <span>Cerrar Sesión</span>
-              </Link>
+              </button>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
