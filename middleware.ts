@@ -34,10 +34,12 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - login (login page)
+     * - error (error page)
      * Feel free to modify this pattern to include more paths.
      */
     "/dashboard/admin/:path*",
     "/dashboard/representative/:path*",
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|login|error|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
