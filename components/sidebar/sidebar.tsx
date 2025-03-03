@@ -59,8 +59,8 @@ export function AppSidebar({ userType }: SidebarProps) {
     <Sidebar className="bg-sidebar border-r border-border">
       <SidebarHeader>
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-primary">MFL Academy</h2>
-          <p className="text-sm text-muted-foreground">Sistema de Pagos</p>
+          <h2 className="text-2xl font-bold text-primary">MFLAcademy</h2>
+          <p className="text-sm text-gray-600 font-medium">Sistema de Pagos</p>
         </div>
       </SidebarHeader>
       <SidebarContent>
