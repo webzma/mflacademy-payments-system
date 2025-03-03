@@ -47,14 +47,14 @@ export default function Login() {
             <label className="block text-black text-sm font-semibold mb-2">
               Tipo de usuario
             </label>
-            <div className="flex justify-center space-x-4">
+            <div className="w-full movile:w-auto movile:flex movile:justify-center movile:space-x-4 movile:items-baseline">
               <motion.button
                 name="userType"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 value={userType}
                 onClick={() => setUserType("representative")}
-                className={`px-4 py-2 rounded-full transition-colors duration-300 ${
+                className={`w-full px-4 py-2 mb-2 text-sm movile:text-base rounded-full transition-colors duration-300 ${
                   userType === "representative"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-800 hover:bg-gray-200"
@@ -67,7 +67,7 @@ export default function Login() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setUserType("admin")}
-                className={`px-4 py-2 rounded-full transition-colors duration-300 ${
+                className={`w-full px-4 py-2 mt-2 text-sm movile:text-base rounded-full transition-colors duration-300 ${
                   userType === "admin"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-800 hover:bg-gray-200"
