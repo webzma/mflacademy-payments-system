@@ -22,7 +22,7 @@ export default function RepresentativeLayout({
           <header className="bg-card border-b border-border p-4 flex items-center justify-between">
             <SidebarTrigger className="lg:hidden" />
             <h1 className="text-xl font-semibold text-foreground">
-              Panel de Representante
+              Panel de administrador
             </h1>
             <div className="flex items-center space-x-4">
               <ThemeSwitcher />
