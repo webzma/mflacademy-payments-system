@@ -4,7 +4,7 @@ import { DollarSign, TrendingUp, Users, CheckCircle } from "lucide-react";
 export default function AdminDashboard() {
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-800">
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
         Panel de Control - Administrador
       </h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

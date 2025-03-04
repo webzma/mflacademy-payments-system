@@ -59,7 +59,7 @@ export default function ReportPayment() {
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-gray-800">Reportar Pago</CardTitle>
+        <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white">Reportar Pago</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">

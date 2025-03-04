@@ -56,7 +56,7 @@ export function AppSidebar({ userType }: SidebarProps) {
   const items = menuItems[userType];
 
   return (
-    <Sidebar className="bg-sidebar border-r border-border">
+    <Sidebar className="bg-sidebar dark:bg-background border-r border-border">
       <SidebarHeader>
         <div className="p-6">
           <h2 className="text-2xl font-bold text-primary">MFLAcademy</h2>
@@ -72,7 +72,7 @@ export function AppSidebar({ userType }: SidebarProps) {
                   href={item.href}
                   className={`flex items-center space-x-3 px-6 py-3 text-md font-medium transition-colors rounded-lg ${
                     pathname === item.href
-                      ? "text-blue-600 bg-gray-100 hover:text-blue-700"
+                      ? "text-blue-600 bg-gray-100 dark:bg-card hover:text-blue-700"
                       : "text-muted-foreground hover:text-blue-500 hover:bg-gray-100"
                   }`}
                 >
