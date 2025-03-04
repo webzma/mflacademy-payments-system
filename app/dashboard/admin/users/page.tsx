@@ -158,7 +158,7 @@ export default function ManageUsers() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-gray-800">
+        <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white">
           Gestionar Usuarios
         </CardTitle>
       </CardHeader>

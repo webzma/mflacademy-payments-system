@@ -170,7 +170,7 @@ export default function MyReceipts() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-gray-800">
+          <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white">
             Mis Comprobantes
           </CardTitle>
         </CardHeader>
