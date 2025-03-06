@@ -20,6 +20,8 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { logout } from "@/app/(auth)/login/actions";
+import { cn } from "@/lib/utils";
+import path from "path";
 
 type SidebarProps = {
   userType: "representative" | "admin";
@@ -51,6 +53,10 @@ export function AppSidebar({ userType }: SidebarProps) {
       },
       { icon: Users, label: "Usuarios", href: "/dashboard/admin/users" },
     ],
+    footerItems: [
+      { icon: Settings, label: "Configuración", href: "/settings" },
+      { icon: LogOut, label: "Cerrar Sesión", href: "/logout" },
+    ],
   };
 
   const items = menuItems[userType];
@@ -70,11 +76,12 @@ export function AppSidebar({ userType }: SidebarProps) {
               <SidebarMenuButton asChild>
                 <Link
                   href={item.href}
-                  className={`flex items-center space-x-3 px-6 py-3 text-md font-medium transition-colors rounded-lg ${
-                    pathname === item.href
-                      ? "text-blue-600 dark:text-blue-500 bg-gray-100 hover:bg-slate-100 dark:bg-card hover:text-blue-600 dark:hover:text-blue-600 "
-                      : "text-muted-foreground hover:text-blue-600 dark:hover:text-blue-500  hover:bg-gray-100"
-                  }`}
+                  className={cn(
+                    "flex items-center space-x-3 px-6 py-3 text-md font-medium transition-colors rounded-lg",
+                    pathname === item.href &&
+                      "text-blue-600 dark:text-blue-500 bg-gray-100 hover:bg-slate-100 dark:bg-card  hover:text-blue-700 dark:hover:text-blue-600",
+                    "ext-muted-foreground hover:text-blue-700 dark:hover:text-blue-500 hover:bg-gray-100"
+                  )}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.label}</span>
@@ -96,7 +103,7 @@ export function AppSidebar({ userType }: SidebarProps) {
             <SidebarMenuButton asChild>
               <Link
                 href="/settings"
-                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-blue-600 dark:hover:text-blue-500  transition-colors rounded-lg"
+                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium dark:hover:text-blue-500 hover:text-blue-700 transition-colors rounded-lg"
               >
                 <Settings className="h-5 w-5" />
                 <span>Configuración</span>
@@ -107,7 +114,7 @@ export function AppSidebar({ userType }: SidebarProps) {
             <SidebarMenuButton asChild>
               <button
                 onClick={logout}
-                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-blue-600 dark:hover:text-blue-500    transition-colors rounded-lg"
+                className="flex items-center space-x-3 px-6 py-3 text-sm font-medium dark:hover:text-blue-500 hover:text-blue-700 transition-colors rounded-lg"
               >
                 <LogOut className="h-5 w-5" />
                 <span>Cerrar Sesión</span>
